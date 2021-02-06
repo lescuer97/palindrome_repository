@@ -14,7 +14,6 @@ if you leave the directories in order and as named, this are the command to comp
 For testing the wasm module you don't need to compile the rust code.
 just run in the base folder: 
 ```
-$ cd ..
 $ deno run --allow-read index.ts
 ```
 
