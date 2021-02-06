@@ -24,7 +24,7 @@ pub fn searcher(num: usize ) -> JsValue  {
                     }
             }
         }
-
+        // returns array of every palindrome number
        return JsValue::from_serde(&palindrome).unwrap(); 
     }
 // #[cfg(test)]
