@@ -1,36 +1,36 @@
-
 use wasm_bindgen::prelude::*;
 
-
 #[wasm_bindgen]
-pub fn searcher(num: usize ) -> JsValue  {
-    // it's a mathematical imposibility to need to allocate more than the imput divided by 350
-    let capacity = num / 350;
-    
-    // this is for optimizing and using the right amount of memory spec
-    let mut palindrome: Vec<usize> = Vec::with_capacity(capacity);
-    
-        for i in 10..=num {
-            
-            let string_number = i.to_string();
+pub fn searcher(until: usize) -> JsValue {
+    let palindromes = palindromes(until);
+    return JsValue::from_serde(&palindromes).unwrap()
+}
 
-            let reversed_number: String = string_number.chars().rev().collect::<String>();
-     
-            if string_number[..0]  == reversed_number[..0] {
-
-                if string_number == reversed_number {
-                
-                     palindrome.push(i);    
-                    }
-            }
+fn palindromes(until: usize) -> Vec<usize> {
+    let mut palindromes: Vec<usize> = Vec::with_capacity(until / 350);
+    let mut string_number = String::new();
+    for i in 10..=until {
+        string_number.clear();
+        use core::fmt::Write as _;
+        write!(string_number, "{}", i).unwrap();
+        if string_number
+            .chars()
+            .zip(string_number.chars().rev())
+            .all(|(forward, backward)| forward == backward)
+        {
+            palindromes.push(i);
         }
-        // returns array of every palindrome number
-       return JsValue::from_serde(&palindrome).unwrap(); 
     }
-// #[cfg(test)]
-// mod tests {
-//     #[test]
-//     fn it_works() {
-//         assert_eq!(2 + 2, 4);
-//     }
-// }
+    palindromes
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(palindromes(11), vec![11]);
+        assert_eq!(palindromes(22), vec![11, 22]);
+    }
+}
