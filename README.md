@@ -1,5 +1,5 @@
 # PALINDROME SEARCHER
-simple function for searching all palindrome numbers inside of an inputed range.
+Simple function for searching all palindrome numbers inside of an inputed range.
 Runed for testing in Deno
 
 ## Details of compilation of rust.
@@ -10,6 +10,13 @@ I used the wasm-bindgen CLI for outputting the modules.
 WARNING!: wasm_bindgen and its CLI must be the same version or you will have a world of trouble.
 
 if you leave the directories in order and as named, this are the command to compile and output the wasm module.
+
+For testing the wasm module you don't need to compile the rust code.
+just run in the base folder: 
+```
+$ cd ..
+$ deno run --allow-read index.ts
+```
 
 Installing the wasm_bindgen CLI 
 
