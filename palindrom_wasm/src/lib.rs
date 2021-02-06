@@ -4,17 +4,24 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub fn searcher(num: usize ) -> JsValue  {
-    
+    // it's a mathematical imposibility to need to allocate more than the imput divided by 350
     let capacity = num / 350;
     
     // this is for optimizing and using the right amount of memory spec
     let mut palindrome: Vec<usize> = Vec::with_capacity(capacity);
     
         for i in 10..=num {
-      
-            let reversed_number: usize = i.to_string().chars().rev().collect::<String>().parse::<usize>().unwrap();
-            if i  == reversed_number {
-                     palindrome.push(reversed_number);    
+            
+            let string_number = i.to_string();
+
+            let reversed_number: String = string_number.chars().rev().collect::<String>();
+     
+            if string_number[..0]  == reversed_number[..0] {
+
+                if string_number == reversed_number {
+                
+                     palindrome.push(i);    
+                    }
             }
         }
 
