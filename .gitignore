@@ -1,0 +1,5 @@
+palindrom_wasm/target/
+
+palindrom_wasm/Cargo.lock
+
+.vscode
