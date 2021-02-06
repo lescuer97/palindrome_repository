@@ -1,5 +1,6 @@
 # PALINDROME SEARCHER
-simple function for searching all palindrome numbers inside of an inputed range, using Deno
+simple function for searching all palindrome numbers inside of an inputed range.
+Runed for testing in Deno
 
 ## Details of compilation of rust.
 
