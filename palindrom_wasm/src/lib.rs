@@ -1,32 +1,36 @@
-
 use wasm_bindgen::prelude::*;
-use std::io::Write;
-
 #[wasm_bindgen]
-pub fn searcher(num: u32) -> Box<[u32]> {
-    // it's a mathematical imposibility to need to allocate more than the imput divided by 350
-    let capacity = if num < 1000 { num / 10 } else { num / 350 };
+pub fn searcher(until: usize) -> JsValue {
+    let palindromes = palindromes(until);
+    return JsValue::from_serde(&palindromes).unwrap()
+}
 
-    // this is for optimizing and using the right amount of memory spec
-    let mut palindrome = Vec::with_capacity(capacity as usize);
-
-    let mut buffer = Vec::with_capacity(16);
-
-    'outer: for i in 11..=num {
-        buffer.clear();
-        if let Err(_) = buffer.write_fmt(format_args!("{}", i)) {
-            std::process::abort();
+fn palindromes(until: usize) -> Vec<usize> {
+    let mut palindromes: Vec<usize> = Vec::with_capacity(until / 350);
+    let mut string_number = String::new();
+    for i in 10..=until {
+        string_number.clear();
+        use core::fmt::Write as _;
+        write!(string_number, "{}", i).unwrap();
+        if string_number
+            .chars()
+            .zip(string_number.chars().rev())
+            .all(|(forward, backward)| forward == backward)
+        {
+            palindromes.push(i);
         }
-
-        let len = buffer.len();
-        for i in 0..len / 2 {
-            if buffer[i] != buffer[len - 1 - i] {
-                continue 'outer;
-            }
-        }
-
-        palindrome.push(i);
     }
-    // returns array of every palindrome number
-    palindrome.into_boxed_slice()
+    palindromes
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(palindromes(11), vec![11]);
+        assert_eq!(palindromes(22), vec![11, 22]);
+        assert_eq!(palindromes(111), vec![11, 22,33,44,55,66,77,88,99,101,111]);
+    }
 }

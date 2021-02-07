@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {number} num
+* @param {number} until
 * @returns {any}
 */
-export function searcher(num: number): any;
+export function searcher(until: number): any;

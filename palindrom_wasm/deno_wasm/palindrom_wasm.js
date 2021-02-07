@@ -45,11 +45,11 @@ function takeObject(idx) {
     return ret;
 }
 /**
-* @param {number} num
+* @param {number} until
 * @returns {any}
 */
-export function searcher(num) {
-    var ret = wasm.searcher(num);
+export function searcher(until) {
+    var ret = wasm.searcher(until);
     return takeObject(ret);
 }
 
