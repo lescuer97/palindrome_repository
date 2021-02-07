@@ -1,5 +1,4 @@
 use wasm_bindgen::prelude::*;
-
 #[wasm_bindgen]
 pub fn searcher(until: usize) -> JsValue {
     let palindromes = palindromes(until);
