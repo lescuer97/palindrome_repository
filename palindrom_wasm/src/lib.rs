@@ -1,11 +1,11 @@
 use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
-pub fn searcher(until: usize) -> JsValue {
+pub fn searcher(until: usize) -> Box<[usize]> {
     let palindromes = palindromes(until);
-    return JsValue::from_serde(&palindromes).unwrap()
+    return palindromes
 }
 
-fn palindromes(until: usize) -> Vec<usize> {
+fn palindromes(until: usize) -> Box<[usize]> {
     let mut palindromes: Vec<usize> = Vec::with_capacity(until / 350);
     let mut string_number = String::new();
     for i in 10..=until {
@@ -19,8 +19,9 @@ fn palindromes(until: usize) -> Vec<usize> {
         {
             palindromes.push(i);
         }
+        
     }
-    palindromes
+    return palindromes.into_boxed_slice();
 }
 
 #[cfg(test)]
