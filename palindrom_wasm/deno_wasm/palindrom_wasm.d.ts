@@ -2,6 +2,6 @@
 /* eslint-disable */
 /**
 * @param {number} until
-* @returns {any}
+* @returns {Uint32Array}
 */
-export function searcher(until: number): any;
+export function searcher(until: number): Uint32Array;
