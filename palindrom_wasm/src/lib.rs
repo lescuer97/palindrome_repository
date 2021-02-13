@@ -25,12 +25,16 @@ fn palindromes(until: usize) -> Vec<usize> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
+    use super::*;   
+    
     #[test]
     fn it_works() {
-        assert_eq!(palindromes(11), vec![11]);
-        assert_eq!(palindromes(22), vec![11, 22]);
-        assert_eq!(palindromes(111), vec![11, 22,33,44,55,66,77,88,99,101,111]);
+        let sample_1: Box<[usize]> = Box::new([11]);
+        let sample_2: Box<[usize]> = Box::new([11, 22]);
+        let sample_3: Box<[usize]> = Box::new([11, 22,33,44,55,66,77,88,99,101,111]);
+
+        assert_eq!( palindromes(11), sample_1);
+        assert_eq!(palindromes(22), sample_2);
+        assert_eq!(palindromes(111), sample_3);
     }
 }
